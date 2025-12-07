@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <link rel="stylesheet" href="{% static 'css/customer.css' %}">
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <!-- Dynamic Content Block -->
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/output.js' %}"></script> 
+
+    <footer>
+        <p class="text-center mt-4">© 2024 Django Application. All rights reserved.</p>
+    </footer>
+</body>
+</html>

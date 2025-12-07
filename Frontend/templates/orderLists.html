@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border: 1px solid #5d2d2d;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px 12px;
+        border: 1px solid #0b9284;
+        text-align: left;
+    }
+</style>    
+    <h1>Welcome to the OrderLists Page</h1>
+    {% if request.user.role == 2 %}
+    <a href="/orders/orderadd/">
+        <button type="submit">Add Orders</button>
+    </a>
+    {% endif %}
+   <table>
+        <tr>
+            <th>Order Number</th>
+            <th>Customer</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>GST</th>
+            <th>Total Amount</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.order_number }}</td>
+            <td>{{ order.customer_reference.name }}</td>
+            <td>{{ order.items_reference.name }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.amount }}</td>
+            <td>{{ order.gst }}</td>
+            <td>{{ order.total_amount  }}</td>
+            <td>
+                 <a href="{% url 'orderUpdate' order.id %}">
+                <button type="submit">Update</button>
+                 </a>
+            </td>
+            <td> 
+                <a href="{% url 'orderDelete' order.id %}">
+                <button>Delete</button>
+                </a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+        
+    
+{% endblock %}

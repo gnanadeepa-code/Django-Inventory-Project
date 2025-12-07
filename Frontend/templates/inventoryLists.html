@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border: 1px solid #5d2d2d;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px 12px;
+        border: 1px solid #0b9284;
+        text-align: left;
+    }
+</style>    
+    <h1>Welcome to the InventoryLists Page</h1>
+    <a href="/inventory/inventoryitems/">
+        <button type="submit">Add Inventory Items</button>
+    </a>
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>GST</th>
+            <th>Picture</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.gst }}</td>
+            <td>
+                {% if item.picture %}
+                  <img src="{{ item.picture.url }}" alt="{{ item.name }}" width="100">
+                   
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            <td>
+                 <a href="{% url 'updateinventoryitem' item.id %}">
+                <button type="submit">Update</button>
+                 </a>
+            </td>
+            <td> 
+                <a href="{% url 'deleteinventoryitem' item.id %}">
+                <button>Delete</button>
+                </a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome to the InventoryItems Page</h1>
+    <a href="/inventory/inventoryitemsList/">
+        <button>Back</button>
+    </a>
+   <div class="container">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ items_form }}
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
